@@ -1,0 +1,16 @@
+[build]
+  # Solo compilamos el frontend (Vite) como sitio estático.
+  # El servidor Express (server.ts) NO se usa en Netlify: su lógica de
+  # /api/visual-search vive ahora en netlify/functions/visual-search.mts
+  command = "npm run build:netlify"
+  publish = "dist"
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"

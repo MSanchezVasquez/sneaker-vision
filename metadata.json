@@ -1,0 +1,6 @@
+{
+  "name": "SneakerVision",
+  "description": "E-commerce de calzado con búsqueda visual inteligente impulsada por IA. Sube una foto y encuentra modelos similares al instante.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

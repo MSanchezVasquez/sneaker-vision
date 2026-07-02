@@ -1,0 +1,71 @@
+{
+  "entities": {
+    "users": {
+      "title": "User",
+      "description": "User profile information",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email"]
+    },
+    "favorites": {
+      "title": "Favorite",
+      "description": "User's favorite shoes",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "shoeId": { "type": "string" },
+        "addedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "shoeId"]
+    },
+    "products": {
+      "title": "Product",
+      "description": "Shoe product information",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "brand": { "type": "string" },
+        "type": { "type": "string", "enum": ["Running", "Lifestyle", "Basketball", "Skate"] },
+        "price": { "type": "number" },
+        "imageUrl": { "type": "string" },
+        "gallery": { "type": "array", "items": { "type": "string" } },
+        "description": { "type": "string" },
+        "sizes": { "type": "array", "items": { "type": "string" } },
+        "colors": { 
+          "type": "array", 
+          "items": { 
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "hex": { "type": "string" }
+            }
+          } 
+        },
+        "isNew": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "name", "brand", "type", "price", "imageUrl"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "users",
+      "description": "User profile documents"
+    },
+    "/users/{userId}/favorites/{shoeId}": {
+      "schema": "favorites",
+      "description": "User favorite shoes subcollection"
+    },
+    "/products/{productId}": {
+      "schema": "products",
+      "description": "Global products collection"
+    }
+  }
+}
